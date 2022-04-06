@@ -2,6 +2,7 @@ package com.tech.challenge.techchallenge.pojo;
 
 public class SpeechObject {
 
+	private String author;
 	private String actualText;
 	private String subjectText;
 	private String createdDate;
@@ -30,5 +31,11 @@ public class SpeechObject {
 	}
 	public void setModifiedDate(String modifiedDate) {
 		this.modifiedDate = modifiedDate;
+	}
+	public String getAuthor() {
+		return author;
+	}
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 }

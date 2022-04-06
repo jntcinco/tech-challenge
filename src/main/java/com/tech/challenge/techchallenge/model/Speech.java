@@ -14,6 +14,7 @@ public class Speech {
 	private @Id @GeneratedValue Long id;
 	private String actualText;
 	private String subjectText;
+	private String author;
 	private Date createdDate;
 	private Date modifiedDate;
 	
@@ -40,6 +41,14 @@ public class Speech {
 	public void setSubjectText(String subjectText) {
 		this.subjectText = subjectText;
 	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
 	
 	public Date getCreatedDate() {
 		return createdDate;
@@ -64,6 +73,11 @@ public class Speech {
 	
 	public Speech subjectText(String subjectText) {
 		this.subjectText = subjectText;
+		return this;
+	}
+	
+	public Speech author(String author) {
+		this.author = author;
 		return this;
 	}
 	

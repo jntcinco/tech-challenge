@@ -31,13 +31,13 @@ public class LoadDatabase {
 	 * @return
 	 */
 	
-	@Bean 
-	CommandLineRunner initDatabase(SpeechRepository repo) {
-		
-		LocalDate dateNow = LocalDate.now();
-		Date sqlDate = Date.valueOf(dateNow);
-		return artgs -> {
-			LOG.info("Load " + repo.save(new Speech().actualText("test speech").subjectText("test subject").createdDate(sqlDate)));
-		};
-	}
+//	@Bean 
+//	CommandLineRunner initDatabase(SpeechRepository repo) {
+//		
+//		LocalDate dateNow = LocalDate.now();
+//		Date sqlDate = Date.valueOf(dateNow);
+//		return artgs -> {
+//			LOG.info("Load " + repo.save(new Speech().actualText("test speech").subjectText("test subject").author("price charles").createdDate(sqlDate)));
+//		};
+//	}
 }

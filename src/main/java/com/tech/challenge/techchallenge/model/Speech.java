@@ -66,6 +66,11 @@ public class Speech {
 		this.modifiedDate = modifiedDate;
 	}
 	
+	public Speech id(Long id) {
+		this.id = id;
+		return this;
+	}
+	
 	public Speech actualText(String actualText) {
 		this.actualText = actualText;
 		return this;

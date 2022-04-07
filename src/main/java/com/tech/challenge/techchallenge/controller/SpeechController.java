@@ -81,7 +81,17 @@ public class SpeechController {
 
 	@PutMapping("/speeches/{id}")
 	public Speech editSpeech(@RequestBody SpeechObject newSpeech, @PathVariable Long id) {
-		return speechRepo.findById(id).orElseThrow(() -> new SpeechNotFoundException("There's no record to update. Id " + id + " not found."));
+		Speech speech = null;
+		try {
+			speech = speechRepo.findById(id).get();
+			speech.setActualText(newSpeech.getActualText());
+			speech.setSubjectText(newSpeech.getSubjectText());
+			speech.setAuthor(newSpeech.getAuthor());
+			speech.setModifiedDate(Date.valueOf(newSpeech.getModifiedDate()));
+		} catch(NoSuchElementException e) {
+			throw new SpeechNotFoundException("There's no record to update. Id " + id + " not found.");
+		}
+		return speechRepo.save(speech);
 	}
 
 	@DeleteMapping("/speeches/{id}")

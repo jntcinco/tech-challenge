@@ -40,36 +40,24 @@ public class SpeechController {
 	@GetMapping("/speeches/author/{author}")
 	public ResponseEntity<List<Speech>> getByAuthorName(@PathVariable String author) {
 		List<Speech> speeches = speechRepo.findByAuthor(author);
-		if(speeches.size() < 1) {
-			throw new SpeechNotFoundException("There's no speech found with author "+ author);
-		}
 		return new ResponseEntity<>(speeches, HttpStatus.OK);
 	}
 	
 	@GetMapping("/speeches/subjectText/{subjectText}")
 	public ResponseEntity<List<Speech>> getBySubjectText(@PathVariable String subjectText) {
 		List<Speech> speeches = speechRepo.findBySubjectText(subjectText);
-		if(speeches.size() < 1) {
-			throw new SpeechNotFoundException("There's no speech found with subjectText "+ subjectText);
-		}
 		return new ResponseEntity<>(speeches, HttpStatus.OK);
 	}
 	
 	@GetMapping("/speeches/actualText/{actualText}")
 	public ResponseEntity<List<Speech>> getByActualText(@PathVariable String actualText) {
 		List<Speech> speeches = speechRepo.findByActualText(actualText);
-		if(speeches.size() < 1) {
-			throw new SpeechNotFoundException("There's no speech found with actualText "+ actualText);
-		}
 		return new ResponseEntity<>(speeches, HttpStatus.OK);
 	}
 	
 	@GetMapping("/speeches/createdDate/{createdDate}")
 	public ResponseEntity<List<Speech>> getByCreatedDate(@PathVariable String createdDate) {
 		List<Speech> speeches = speechRepo.findByCreatedDate(Date.valueOf(createdDate));
-		if(speeches.size() < 1) {
-			throw new SpeechNotFoundException("There's no speech found with createdDate "+ createdDate);
-		}
 		return new ResponseEntity<>(speeches, HttpStatus.OK);
 	}
 

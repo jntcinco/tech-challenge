@@ -53,50 +53,6 @@ public class SpeechControllerTest extends MockMvcResultMatchers {
 			   					   .createdDate(Date.valueOf(CREATED_DATE));
 
 	@Test
-	public void findAll_success() throws Exception {
-
-		List<Speech> speeches = new ArrayList<>(Arrays.asList(S1,S2,S3));
-		Mockito.when(speechRepo.findAll()).thenReturn(speeches);
-		mockMvc.perform(MockMvcRequestBuilders.get("/speeches").contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk()).andExpect(jsonPath("$", Matchers.hasSize(3)))
-				.andExpect(jsonPath("$[1].actualText", Matchers.is(ACTUAL_TEXT)))
-				.andExpect(jsonPath("$[0].author", Matchers.is(AUTHOR_NAME)))
-				.andExpect(jsonPath("$[2].subjectText", Matchers.is(SUBJECT_TEXT)));
-	}
-	
-	@Test
-	public void findByAuthor_success() throws Exception {
-
-		List<Speech> speeches = new ArrayList<>(Arrays.asList(S1,S3));
-		Mockito.when(speechRepo.findByAuthor(AUTHOR_NAME)).thenReturn(speeches);
-		mockMvc.perform(MockMvcRequestBuilders.get("/speeches/author/" + AUTHOR_NAME).contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk()).andExpect(jsonPath("$", Matchers.hasSize(2)))
-				.andExpect(jsonPath("$[0].author", Matchers.is(AUTHOR_NAME)))
-				.andExpect(jsonPath("$[1].author", Matchers.is(AUTHOR_NAME)));
-	}
-	
-	@Test
-	public void findByActualText_success() throws Exception {
-
-		List<Speech> speeches = new ArrayList<>(Arrays.asList(S2,S3));
-		Mockito.when(speechRepo.findByActualText(ACTUAL_TEXT)).thenReturn(speeches);
-		mockMvc.perform(MockMvcRequestBuilders.get("/speeches/actualText/" + ACTUAL_TEXT).contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk()).andExpect(jsonPath("$", Matchers.hasSize(2)))
-				.andExpect(jsonPath("$[0].actualText", Matchers.is(ACTUAL_TEXT)))
-				.andExpect(jsonPath("$[1].actualText", Matchers.is(ACTUAL_TEXT)));
-	}
-	
-	@Test
-	public void findBySubjectText_success() throws Exception {
-
-		List<Speech> speeches = new ArrayList<>(Arrays.asList(S3));
-		Mockito.when(speechRepo.findBySubjectText(SUBJECT_TEXT)).thenReturn(speeches);
-		mockMvc.perform(MockMvcRequestBuilders.get("/speeches/subjectText/" + SUBJECT_TEXT).contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk()).andExpect(jsonPath("$", Matchers.hasSize(1)))
-				.andExpect(jsonPath("$[0].subjectText", Matchers.is(SUBJECT_TEXT)));
-	}
-	
-	@Test
 	public void findByCreatedDate_success() throws Exception {
 
 		List<Speech> speeches = new ArrayList<>(Arrays.asList(S1,S2,S3));
@@ -178,5 +134,49 @@ public class SpeechControllerTest extends MockMvcResultMatchers {
 	    		.andExpect(status().isNotFound())
 	            .andExpect(result -> assertTrue(result.getResolvedException() instanceof SpeechNotFoundException))
 	            .andExpect(result -> assertEquals("There's no record to delete. Id " + id + " not found.", result.getResolvedException().getMessage()));
+	}
+
+	@Test
+	public void findAll_success() throws Exception {
+
+		List<Speech> speeches = new ArrayList<>(Arrays.asList(S1,S2,S3));
+		Mockito.when(speechRepo.findAll()).thenReturn(speeches);
+		mockMvc.perform(MockMvcRequestBuilders.get("/speeches").contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk()).andExpect(jsonPath("$", Matchers.hasSize(3)))
+				.andExpect(jsonPath("$[1].actualText", Matchers.is(ACTUAL_TEXT)))
+				.andExpect(jsonPath("$[0].author", Matchers.is(AUTHOR_NAME)))
+				.andExpect(jsonPath("$[2].subjectText", Matchers.is(SUBJECT_TEXT)));
+	}
+	
+	@Test
+	public void findByAuthor_success() throws Exception {
+
+		List<Speech> speeches = new ArrayList<>(Arrays.asList(S1,S3));
+		Mockito.when(speechRepo.findByAuthor(AUTHOR_NAME)).thenReturn(speeches);
+		mockMvc.perform(MockMvcRequestBuilders.get("/speeches/author/" + AUTHOR_NAME).contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk()).andExpect(jsonPath("$", Matchers.hasSize(2)))
+				.andExpect(jsonPath("$[0].author", Matchers.is(AUTHOR_NAME)))
+				.andExpect(jsonPath("$[1].author", Matchers.is(AUTHOR_NAME)));
+	}
+	
+	@Test
+	public void findByActualText_success() throws Exception {
+
+		List<Speech> speeches = new ArrayList<>(Arrays.asList(S2,S3));
+		Mockito.when(speechRepo.findByActualText(ACTUAL_TEXT)).thenReturn(speeches);
+		mockMvc.perform(MockMvcRequestBuilders.get("/speeches/actualText/" + ACTUAL_TEXT).contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk()).andExpect(jsonPath("$", Matchers.hasSize(2)))
+				.andExpect(jsonPath("$[0].actualText", Matchers.is(ACTUAL_TEXT)))
+				.andExpect(jsonPath("$[1].actualText", Matchers.is(ACTUAL_TEXT)));
+	}
+	
+	@Test
+	public void findBySubjectText_success() throws Exception {
+
+		List<Speech> speeches = new ArrayList<>(Arrays.asList(S3));
+		Mockito.when(speechRepo.findBySubjectText(SUBJECT_TEXT)).thenReturn(speeches);
+		mockMvc.perform(MockMvcRequestBuilders.get("/speeches/subjectText/" + SUBJECT_TEXT).contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk()).andExpect(jsonPath("$", Matchers.hasSize(1)))
+				.andExpect(jsonPath("$[0].subjectText", Matchers.is(SUBJECT_TEXT)));
 	}
 }

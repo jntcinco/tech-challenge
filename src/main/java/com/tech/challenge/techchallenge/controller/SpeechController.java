@@ -79,9 +79,15 @@ public class SpeechController {
 		return speechRepo.save(speech);
 	}
 
-	@PutMapping("/speeches/{id}")
-	public Speech editSpeech(@RequestBody SpeechObject newSpeech, @PathVariable Long id) {
+	@PutMapping("/speeches")
+	public Speech editSpeech(@RequestBody SpeechObject newSpeech) {
 		Speech speech = null;
+		
+		Long id = newSpeech.getId() != null ? Long.valueOf(newSpeech.getId()) : null;
+		if(id == null) {
+			throw new SpeechNotFoundException("Speech ID is null.");
+		}
+		
 		try {
 			speech = speechRepo.findById(id).get();
 			speech.setActualText(newSpeech.getActualText());

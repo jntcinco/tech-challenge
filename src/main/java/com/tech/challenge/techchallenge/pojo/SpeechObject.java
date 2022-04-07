@@ -2,6 +2,7 @@ package com.tech.challenge.techchallenge.pojo;
 
 public class SpeechObject {
 
+	private String id;
 	private String author;
 	private String actualText;
 	private String subjectText;
@@ -37,5 +38,11 @@ public class SpeechObject {
 	}
 	public void setAuthor(String author) {
 		this.author = author;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 }
